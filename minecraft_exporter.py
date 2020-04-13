@@ -11,10 +11,11 @@ from os.path import isfile, join
 
 class MinecraftCollector(object):
     def __init__(self):
-        self.statsdirectory = "/world/stats"
-        self.playerdirectory = "/world/playerdata"
-        self.advancementsdirectory = "/world/advancements"
-        self.betterquesting = "/world/betterquesting"
+        worlddir = os.environ.get("WORLD_DIR", "/world")
+        self.statsdirectory = f"/{worlddir}/stats"
+        self.playerdirectory = f"/{worlddir}/playerdata"
+        self.advancementsdirectory = f"/{worlddir}/advancements"
+        self.betterquesting = f"/{worlddir}/betterquesting"
         self.map = dict()
         self.questsEnabled = False
         if os.path.isdir(self.betterquesting):
